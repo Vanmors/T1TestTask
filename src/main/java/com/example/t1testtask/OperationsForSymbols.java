@@ -3,7 +3,7 @@ package com.example.t1testtask;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class OperatonsForSymbols {
+public class OperationsForSymbols {
 
 
     public Map<Character, Integer> sortByFrequencyDesc(Map<Character, Integer> frequencyMap) {

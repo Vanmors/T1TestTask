@@ -14,8 +14,8 @@ import java.util.Map;
 @Api(tags = "Frequency API", description = "Операции для вычисления частоты символов")
 public class FrequencyController {
 
-    @GetMapping("/calculateFrequency")
-    @ApiOperation(value = "Calculate character frequency", notes = "Возвращает отображение символов и их частоты во входной строке в порядке убывания.")
+    @GetMapping("/symbolsCount")
+    @ApiOperation(value = "Вычисляет частоту символов", notes = "Возвращает отображение символов и их частоты во входной строке в порядке убывания.")
     public Map<Character, Integer> calculateFrequency(@RequestParam String input) {
         Map<Character, Integer> frequencyMap = new HashMap<>();
 
@@ -23,18 +23,10 @@ public class FrequencyController {
             frequencyMap.put(ch, frequencyMap.getOrDefault(ch, 0) + 1);
         }
 
-        OperatonsForSymbols operatons = new OperatonsForSymbols();
+        OperationsForSymbols operations = new OperationsForSymbols();
 
 
-        return operatons.sortByFrequencyDesc(frequencyMap);
+        return operations.sortByFrequencyDesc(frequencyMap);
     }
-
-//    private Map<Character, Integer> sortByFrequencyDesc(Map<Character, Integer> frequencyMap) {
-//        // Сортировка по убыванию частоты
-//        return frequencyMap.entrySet()
-//                .stream()
-//                .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
-//                .collect(LinkedHashMap::new, (m, e) -> m.put(e.getKey(), e.getValue()), Map::putAll);
-//    }
 
 }

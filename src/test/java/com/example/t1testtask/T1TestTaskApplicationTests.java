@@ -25,7 +25,7 @@ class T1TestTaskApplicationTests {
     @Test
     void testCalculateFrequency() {
         String input = "aaaaabcccc";
-        Map<Character, Integer> result = restTemplate.getForObject("http://localhost:" + port + "/calculateFrequency?input=" + input, Map.class);
+        Map<Character, Integer> result = restTemplate.getForObject("http://localhost:" + port + "/symbolsCount?input=" + input, Map.class);
 
         assertEquals(5, result.get("a"));
         assertEquals(4, result.get("c"));
@@ -36,7 +36,7 @@ class T1TestTaskApplicationTests {
     @Test
     void testCalculateFrequency1() {
         String input = "";
-        Map<Character, Integer> result = restTemplate.getForObject("http://localhost:" + port + "/calculateFrequency?input=" + input, Map.class);
+        Map<Character, Integer> result = restTemplate.getForObject("http://localhost:" + port + "/symbolsCount?input=" + input, Map.class);
 
         assertEquals(0, result.size());
     }
@@ -49,9 +49,9 @@ class T1TestTaskApplicationTests {
         frequencyMap.put('b', 5);
         frequencyMap.put('c', 1);
 
-        OperatonsForSymbols operatons = new OperatonsForSymbols();
+        OperationsForSymbols operations = new OperationsForSymbols();
 
-        Map<Character, Integer> result = operatons.sortByFrequencyDesc(frequencyMap);
+        Map<Character, Integer> result = operations.sortByFrequencyDesc(frequencyMap);
 
         assertThat(result).containsExactlyEntriesOf(
                 new LinkedHashMap<>() {{
@@ -65,9 +65,9 @@ class T1TestTaskApplicationTests {
     @Test
     void sortByFrequencyDesc_EmptyMap_ReturnsEmptyMap() {
         Map<Character, Integer> frequencyMap = new HashMap<>();
-        OperatonsForSymbols operatons = new OperatonsForSymbols();
+        OperationsForSymbols operations = new OperationsForSymbols();
 
-        Map<Character, Integer> result = operatons.sortByFrequencyDesc(frequencyMap);
+        Map<Character, Integer> result = operations.sortByFrequencyDesc(frequencyMap);
 
         assertThat(result).isEmpty();
     }
@@ -76,9 +76,9 @@ class T1TestTaskApplicationTests {
     void sortByFrequencyDesc_SingleEntry_ReturnsSameMap() {
         Map<Character, Integer> frequencyMap = new HashMap<>();
         frequencyMap.put('a', 3);
-        OperatonsForSymbols operatons = new OperatonsForSymbols();
+        OperationsForSymbols operations = new OperationsForSymbols();
 
-        Map<Character, Integer> result = operatons.sortByFrequencyDesc(frequencyMap);
+        Map<Character, Integer> result = operations.sortByFrequencyDesc(frequencyMap);
 
         assertThat(result).containsExactlyEntriesOf(frequencyMap);
     }
