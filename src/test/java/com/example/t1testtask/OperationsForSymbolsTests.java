@@ -1,46 +1,14 @@
 package com.example.t1testtask;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class T1TestTaskApplicationTests {
-
-    @LocalServerPort
-    private int port;
-
-    @Autowired
-    private TestRestTemplate restTemplate;
-
-    @Test
-    void testCalculateFrequency() {
-        String input = "aaaaabcccc";
-        Map<Character, Integer> result = restTemplate.getForObject("http://localhost:" + port + "/symbolsCount?input=" + input, Map.class);
-
-        assertEquals(5, result.get("a"));
-        assertEquals(4, result.get("c"));
-        assertEquals(1, result.get("b"));
-
-    }
-
-    @Test
-    void testCalculateFrequency1() {
-        String input = "";
-        Map<Character, Integer> result = restTemplate.getForObject("http://localhost:" + port + "/symbolsCount?input=" + input, Map.class);
-
-        assertEquals(0, result.size());
-    }
-
+public class OperationsForSymbolsTests {
 
     @Test
     void sortByFrequencyDesc_SortedCorrectly() {
@@ -82,5 +50,4 @@ class T1TestTaskApplicationTests {
 
         assertThat(result).containsExactlyEntriesOf(frequencyMap);
     }
-
 }
